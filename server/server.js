@@ -6,6 +6,8 @@ dotenv.config({path:"./config.env"})
 
 const db = process.env.DATABASE
 
+mongoose.set("strictQuery", false);
+
 mongoose.connect(db).then(()=>{
     console.log("Connect to database successfully.")
     const port = process.env.PORT || 3000
