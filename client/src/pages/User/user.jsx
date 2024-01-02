@@ -7,9 +7,10 @@ import './UserPage.css';
 const UserPage = () => {
   const [selectedList, setSelectedList] = useState(null);
   const handleListSelection = (listId) => {
-      setSelectedList(listId);
-    };
+    setSelectedList(listId);
+  };
     
+  // fetching all the lists user have.
   const [lists,setLists] = useState([]);
 
   useEffect(() => {

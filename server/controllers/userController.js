@@ -88,17 +88,16 @@ exports.markDone = (req,res) => {
         })
     }
 
-    Item.updateOne({_id: itemID},{completed: true}, (err,result)=>{
-        if(err){
-            console.error(err);
-            return res.status(400).json({
-                msg: "Unable to mark item as done"
-            })
-        }
+    Item.updateOne({_id: itemID},{completed: true}).then(result=>{
         return res.status(200).json({
             msg: "Item marked as done",
             item : result
         })
+    }).catch(err=>{
+        console.error(err);
+            return res.status(400).json({
+                msg: "Unable to mark item as done"
+            })
     })
 }
 
@@ -110,16 +109,15 @@ exports.unMarkDone = (req,res) => {
         })
     }
 
-    Item.updateOne({_id: itemID},{completed: false}, (err,result)=>{
-        if(err){
-            console.error(err);
-            return res.status(400).json({
-                msg: "Unable to unmark item as done"
-            })
-        }
+    Item.updateOne({_id: itemID},{completed: false}).then(result=>{
         return res.status(200).json({
             msg: "Item unmarked as done",
             item : result
+        })
+    }).catch(err=>{
+        console.error(err);
+        return res.status(400).json({
+            msg: "Unable to unmark item as done"
         })
     })
 }

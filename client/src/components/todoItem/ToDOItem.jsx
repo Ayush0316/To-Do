@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ToDoItem.css';
 
-const TodoItem = ({ todo, onDelete, onUpdate }) => {
+const TodoItem = ({ todo, onDelete, onUpdate, onUnmark, onMark }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(todo.content);
 
@@ -25,9 +25,18 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
     setIsEditing(false);
   };
 
+  const changeCheckBox = (e)=>{
+    e.preventDefault()
+    if(todo.completed){
+      onUnmark(todo._id)
+    }else{
+      onMark(todo._id)
+    }
+  }
+
   return (
-    <div className="todo-item">
-      <input type="checkbox" />
+    <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+      <input type="checkbox" checked={todo.completed} onChange={changeCheckBox}/>
       {isEditing ? (
         <>
           <input

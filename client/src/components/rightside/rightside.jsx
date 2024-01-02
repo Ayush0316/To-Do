@@ -107,6 +107,49 @@ const RightSide = ({ selectedList }) => {
         console.log(err)
     });
   }
+
+  // Mark todo
+  const markTodo = async(itemID)=>{
+    if(!itemID){
+      console.log("itemID needed");
+    }
+    axios.post('http://localhost:8000/api/user/markitem', 
+    {itemID: itemID},
+    {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json', // You can add other headers as needed
+      },
+    }).then(res=>{
+        console.log(res);
+        setnew(true)
+    }
+    ).catch(err=>{
+        console.log(err)
+    });
+  }
+
+  // unmark todo
+  const unMarkTodo = async(itemID)=>{
+    if(!itemID){
+      console.log("itemID needed");
+    }
+    axios.post('http://localhost:8000/api/user/unmarkitem', 
+    {itemID: itemID},
+    {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json', // You can add other headers as needed
+      },
+    }).then(res=>{
+        console.log(res);
+        setnew(true)
+    }
+    ).catch(err=>{
+        console.log(err)
+    });
+  }
+
   return (
     <div className="right-side">
       <div className="new-todo">
@@ -115,7 +158,7 @@ const RightSide = ({ selectedList }) => {
       </div>
       <div className="todo-list">
         {todos.map((todo) => (
-          <TodoItem key={todo._id} todo={todo} onDelete={deleteTodo} onUpdate={updateTodo}/>
+          <TodoItem key={todo._id} todo={todo} onDelete={deleteTodo} onMark={markTodo} onUnmark={unMarkTodo} onUpdate={updateTodo}/>
         ))}
       </div>
     </div>
