@@ -4,7 +4,7 @@ import './LeftSideDrawer.css';
 
 const LeftSideDrawer = ({ onSelectList }) => {
   const [todoLists, setTodoLists] = useState([
-    { id: 1, title: 'Groceries' },
+    { id: 1, title: 'Home Tasks' },
     { id: 2, title: 'Work Tasks'},
     // Add more todo lists as needed
   ]);

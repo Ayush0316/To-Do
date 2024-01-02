@@ -6,7 +6,7 @@ import axios from "axios";
 const RightSide = ({ selectedList }) => {
   console.log(selectedList)
   const [todos, setTodos] = useState([]);
-  const [newadded, setnew] = useState(false);
+  const [newadded, setnew] = useState(true);
 
   // Get all the ToDO in the list.
   useEffect(() => {
