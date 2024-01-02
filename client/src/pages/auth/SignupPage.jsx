@@ -1,12 +1,14 @@
 // SignupPage.js
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import './auth.css';
 import axios from "axios";
 
 const SignupPage = () => {
+
+    const navigate = useNavigate();
 
     const [data, changeData] = useState({
         "email": "",
@@ -18,13 +20,22 @@ const SignupPage = () => {
         changeData(prevData => ({ ...prevData, [req.target.name]: req.target.value }));
     } 
 
-    const submitData = (req) => {
-        console.log(req);
-        axios.post("auth/signup")
+    const submitData = (event) => {
+        event.preventDefault();
+        console.log(event);
+        axios.post("http://localhost:8000/api/auth/signup",data)
         .then((res)=>{
-            console.log(res)
+            console.log("got res")
+            console.log(res.data.msg)
+            console.log(res.data.token)
+            console.log(res.data.user)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('user', JSON.stringify(res.data.user))
+            navigate('/user')
         }).catch(err=> {
-            console.log(err)
+            console.log("got error")
+            console.log("trying to get data")
+            console.log(err.response.data.msg)
         })
     }
 

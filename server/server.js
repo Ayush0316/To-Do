@@ -8,10 +8,13 @@ const db = process.env.DATABASE
 
 mongoose.set("strictQuery", false);
 
+console.log("trying")
 mongoose.connect(db).then(()=>{
     console.log("Connect to database successfully.")
     const port = process.env.PORT || 3000
     app.listen(port,()=>{
         console.log(`Server running on port ${port}...`)
     })
+}).catch(err=>{
+    console.log(err)
 })

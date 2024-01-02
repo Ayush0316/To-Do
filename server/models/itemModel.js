@@ -21,6 +21,7 @@ const itemSchema = mongoose.Schema({
 itemSchema.set('toObject',{
     transform: (document, ret)=>{
         ret.id = ret._id;
+        delete ret._id;
         delete ret.__v;
     }
 })
@@ -28,6 +29,7 @@ itemSchema.set('toObject',{
 itemSchema.set('toJson', {
     transform: (document, ret)=>{
         ret.id = ret._id;
+        delete ret._id;
         delete ret.__v;
     }
 })

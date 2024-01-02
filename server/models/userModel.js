@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const validator = require("validator")
-const list = require("./listModel")
+const List = require("./listModel")
 
 const userSchema = new mongoose.Schema({
     userName: {
@@ -42,26 +42,31 @@ const userSchema = new mongoose.Schema({
           },
     },
 
-    lists: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: list,
-    }
+    lists: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'List',
+    }]
 })
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
   
     this.password = await bcrypt.hash(this.password, 12);
-    this.passwordConfirm = undefined;
+    this.confirmPassword = undefined;
     next();
 });
 
-userSchema.methods.confirmPassword = async function (
+userSchema.methods.checkPassword = async function (
     candidatePassword,
     userPassword
 ) {
-    return await bcrypt.compare(candidatePassword, userPassword);
+    return await bcrypt.compare(userPassword,candidatePassword);
 };
+
+userSchema.methods.populateItem = async function () {
+    await this.populate('lists').execPopulate();
+    return this;
+  };
 
 userSchema.set("toJSON", {
     transform: (document, returnedObject) => {
@@ -79,7 +84,7 @@ userSchema.set("toObject", {
        delete ret._id;
        delete ret.__v;
        delete ret.password;
-       delete returnedObject.confirmPassword;
+       delete ret.confirmPassword;
     },
 });
 

@@ -2,7 +2,7 @@ const User = require("../models/userModel")
 const jwt = require("jsonwebtoken")
     
 const tokenExtractor = (req, res, next) => {
-    const auth = req.get("auth");
+    const auth = req.get("Authorization");
     if (auth && auth.startsWith("Bearer ")) {
         req.token = auth.replace("Bearer ", "");
     } else req.token = null;
@@ -16,7 +16,9 @@ const userExtractor = async (req,res,next) => {
             msg: "token invalid",
         });
     }
-    req.user = await User.findbyId(token.id).toObject()
+
+    const userDoc = await User.findById(decodedToken.id);
+    req.user = userDoc.toObject();
     if(!req.user){
         return res.status(401).json({
             msg: "User Invalid",

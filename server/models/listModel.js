@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const item = require("./itemModel")
+const Item = require("./itemModel")
 
 const listSchema = new mongoose.Schema({
     name: {
@@ -7,10 +7,10 @@ const listSchema = new mongoose.Schema({
         required: [true, "Please provide the list name"]
     },
 
-    items:{
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: item
-    }
+    items:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'items'
+    }]
 })
 
 listSchema.set('toObject',{
@@ -27,11 +27,11 @@ listSchema.set('toJson', {
     }
 })
 
-listSchema.method.populateItem = async function(){
-    await this.populate('items').execPopulate();
+listSchema.methods.populateItems = async function(){
+    await this.populate('items').exec();
     return this;
 }
 
-const List = mongoose.model('list', listSchema)
+const List = mongoose.model('List', listSchema)
 
 module.exports = List;

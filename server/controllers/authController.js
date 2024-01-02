@@ -3,7 +3,7 @@ const User = require("../models/userModel")
 const List = require("../models/listModel")
 
 const jwtToken = (id)=>{
-    jwt.sign({id:id}, process.env.JWT_SECRET,{
+    return jwt.sign({id:id}, process.env.JWT_SECRET,{
         expiresIn: process.env.JWT_EXPIRE
     })
 }
@@ -22,29 +22,30 @@ exports.signUp = (req,res) =>{
         })
         .then((createdUser)=>{
             console.log("User created successfully");
-            console.log(JSON.stringfy(createdUser));
+            console.log(JSON.stringify(createdUser));
             const token = jwtToken(createdUser.id);
-            res.status(201).JSON({
+            console.log("token --  ", token)
+            return res.status(201).json({
                 msg: "User created successfully",
                 token: token,
-                data: {
-                    user: createdUser
-                }
+                user: createdUser
             })
         })
         .catch((error)=>{
             console.error("Error while creating the user.");
             console.error(error);
-            res.status(400).JSON({
-                msg:error
+            return res.status(400).json({
+                msg:"Error while creating the user.",
+                err: error
             })
         })
     })
     .catch((error)=>{
         console.error("Error while creating the user.");
         console.error(error);
-        res.status(400).JSON({
-            msg:error
+        return res.status(400).json({
+            msg:"Error while creating the user.",
+            err: error
         })
     })
 }
@@ -52,31 +53,32 @@ exports.signUp = (req,res) =>{
 exports.signIn = async (req,res) =>{
     try{
 
-        const {userName, password} = req.body;
+        const {username, password} = req.body;
     
-        if(!userName || !password){
-            res.status(400).json({
+        if(!username || !password){
+            return res.status(400).json({
                 msg: "Please provide Username and Password"
             })
         }
     
-        const user = User.findOne({userName: userName});
-        
-        if (!user ||!await User.confirmPassword(user.password,password)){
-            res.status(400).json({
+        const user = await User.findOne({userName: username});
+
+        // const compare = 
+        // console.log(compare)
+        if (!user ||!await user.checkPassword(user.password,password)){
+            return res.status(400).json({
                 msg: "Either Username or Password is incorrect."
             })
+        }else{
+            const token = jwtToken(user._id);
+            
+            return res.status(200).json({
+                msg: "Successfully logged in",
+                token: token,
+                user:user.toObject()
+            })
         }
-    
-        const token = jwtToken(user.id);
-        res.status(200).json({
-            msg: "Successfully logged in",
-            token: token
-        })
     }catch(error){
         console.log(error);
-        res.status(500).json({
-            msg: "Unable to login"
-        })
     }
 }
