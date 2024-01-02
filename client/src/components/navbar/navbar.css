@@ -1,0 +1,30 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #A683E3; /* Theme color */
+  color: #fff; /* White text */
+}
+
+.left-side {
+  flex: 1;
+}
+
+.site-name {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.right-side {
+  display: flex;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 1rem;
+}

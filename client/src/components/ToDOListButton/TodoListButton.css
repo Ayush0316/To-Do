@@ -1,0 +1,16 @@
+/* TodoListButton.css */
+
+.todo-list-btn {
+    background-color: #8743E3;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .todo-list-btn:hover {
+    background-color: #602080;
+  }
+  
+  

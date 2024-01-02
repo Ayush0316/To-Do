@@ -1,0 +1,28 @@
+/* RightSide.css */
+
+.right-side {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure children (including input) stretch to full width */
+  }
+  
+  .new-todo {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .new-todo input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 8px;
+  }
+  
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Other styles from previous examples */
+  

@@ -1,0 +1,32 @@
+/* TodoItem.css */
+
+/* Basic styles for the todo item container */
+.todo-item {
+    display: flex;
+    align-items: center;
+    background-color: #A683E3;
+    color: #fff;
+    padding: 8px;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Checkbox styling */
+  .todo-item input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  
+  /* Styles for the text content */
+  .todo-item span {
+    cursor: pointer;
+  }
+  
+  /* Styles for the actions (edit and delete) */
+  .actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  /* Other styles from previous examples */
+  

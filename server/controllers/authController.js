@@ -14,7 +14,7 @@ exports.signUp = (req,res) =>{
     })
     .then((createdList)=> {
         User.create({
-            userName: req.body.userName,
+            userName: req.body.username,
             email: req.body.email,
             password: req.body.password,
             confirmPassword: req.body.confirmPassword,

@@ -1,0 +1,29 @@
+/* LeftSideDrawer.css */
+
+.left-side-drawer {
+    width: 200px;
+    padding: 1rem;
+    background-color: #A683E3;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-list-btn {
+    margin-bottom: 1rem;
+    background-color: #8743E3;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .todo-list-btn {
+    background-color: #8743E3;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+  
