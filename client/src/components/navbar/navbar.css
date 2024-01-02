@@ -8,7 +8,7 @@
   color: #fff; /* White text */
 }
 
-.left-side {
+.navbar-left {
   flex: 1;
 }
 
@@ -19,7 +19,7 @@
   font-weight: bold;
 }
 
-.right-side {
+.navbar-right {
   display: flex;
 }
 
