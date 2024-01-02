@@ -6,7 +6,7 @@ import Navbar from '../../components/navbar/navbar';
 import './auth.css';
 import axios from "axios";
 
-const SignupPage = () => {
+const SignupPage = ({setAuth}) => {
 
     const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ const SignupPage = () => {
             console.log(res.data.user)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify(res.data.user))
+            setAuth(true)
             navigate('/user')
         }).catch(err=> {
             console.log("got error")

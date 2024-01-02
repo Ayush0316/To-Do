@@ -38,7 +38,7 @@ const RightSide = ({ selectedList }) => {
     };
   
     fetchData();
-  }, [newadded]); // Empty dependency array to run the effect only once
+  }, [newadded, selectedList]); // Empty dependency array to run the effect only once
   
 
   // Add a new TODO item in the list.

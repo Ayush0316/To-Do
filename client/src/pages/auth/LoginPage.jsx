@@ -6,7 +6,7 @@ import Navbar from '../../components/navbar/navbar';
 import './auth.css';
 import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({setAuth}) => {
     const navigate = useNavigate();
     const [data, changeData] = useState({
         "username": "",
@@ -21,12 +21,9 @@ const LoginPage = () => {
         console.log(event);
         axios.post("http://localhost:8000/api/auth/signin",data)
         .then((res)=>{
-            console.log("got res")
-            console.log(res.data.msg)
-            console.log(res.data.token)
-            console.log(res.data.user)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user',JSON.stringify(res.data.user))
+            setAuth(true)
             navigate("/user")
         }).catch(err=> {
             console.log("got error")

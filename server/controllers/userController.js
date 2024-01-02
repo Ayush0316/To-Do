@@ -1,5 +1,6 @@
 const Item = require("../models/itemModel")
 const List = require("../models/listModel")
+const User = require("../models/userModel")
 
 exports.getItems = (req,res) => {
     console.log("route hit")
@@ -35,6 +36,95 @@ exports.getItems = (req,res) => {
         error: err,
       });
     });
+}
+
+exports.getLists = async (req,res) => {
+    const userId = req.body.userID
+    if(!userId){
+        return res.status(400).json({
+            msg: "User id needed"
+        })
+    }
+
+    User.findById({_id: userId})
+    .then(user =>{
+        console.log("Got user successfully")
+        user = user.toObject();
+        console.log(user.lists)
+        return res.status(200).json({
+            msg: "Got user successfully",
+            lists: user.lists
+        })
+    }).catch(err=> {
+        console.log(err);
+        res.status(400).json({
+            msg: "Unable to find the user"
+        })
+    })
+
+}
+
+const getListData = async (listId) => {
+    const listData = await List.findById({_id:listId});
+    return listData.toObject()
+}
+
+exports.getListsData = async (req,res) => {
+    const listsIds = req.body.listsIds;
+    if (listsIds.length < 1 ){
+        return res.status(400).json({
+            msg: "List ids needed"
+        })
+    }
+    const listsData = await Promise.all(listsIds.map(getListData))
+    if(!listsData){
+        return res.status(400).json({
+            msg: "Unable to get list data"
+        })
+    }else{
+        return res.status(200).json({
+            msg: "Got data successfully",
+            data: listsData
+        })
+    }
+}
+
+exports.addList = (req,res) => {
+    const listName = req.body.listName;
+    const userId = req.body.userId;
+    if(!listName || !userId){
+        return res.status(400).json({
+            msg: "New List name and userID needed"
+        })
+    }
+
+    console.log(")))))))))))))))))))))))))))))))))))))))))))))))))))))")
+
+    List.create({
+        name: listName
+    }).then(createdList=>{
+        console.log("List created successfully")
+        console.log(userId);
+        User.updateOne({_id: userId},{$push: {lists: createdList._id}})
+        .then(result=>{
+            console.log("User update successfully");
+            return res.status(200).json({
+                msg: "List added Successfully",
+                data: createdList
+            })
+        }).catch(err=>{
+            console.log("error while updating the user")
+            return res.status(400).json({
+                msg: "Error while updating the user"
+            })
+        })
+    }).catch(err=>{
+        console.log("error while creting the list")
+        return res.status(400).json({
+            msg: "Error while creting the list"
+        })
+    })
+    
 }
 
 exports.addItem = (req,res) => {

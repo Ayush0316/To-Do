@@ -8,7 +8,7 @@ const TodoListButton = ({ list, onSelectList }) => {
 
   return (
     <button className="todo-list-btn" onClick={handleClick}>
-      {list.title}
+      {list.name}
     </button>
   );
 };
