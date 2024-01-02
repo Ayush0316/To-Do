@@ -1,43 +1,39 @@
-/* LandingPage.css */
-
 .landing-page {
-    height: 100vh;
-    background: url('../../assets/background.jpg') center/cover; /* Updated background image path */
-    background-color: #E4E9FD;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .centered-content {
-    text-align: center;
-  }
-  
-  .tagline {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-  }
-  
-  .signup-button,
-  .login-button {
-    background-color: #A683E3;
-    color: #fff;
-    padding: 15px 30px;
-    font-size: 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .signup-button:hover,
-  .login-button:hover {
-    background-color: #8743E3;
-  }
-  
-  .login-button {
-    margin-left: 10px; /* Add left margin to create separation */
-  }
-  
+  height: 100vh;
+  background-color: #E4E9FD;
+  color: #333; /* Darken the text color for better contrast */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-content {
+  text-align: center;
+}
+
+.tagline {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.signup-button,
+.login-button {
+  background-color: #A683E3;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover,
+.login-button:hover {
+  background-color: #8743E3;
+}
+
+.login-button {
+  margin-left: 10px;
+}

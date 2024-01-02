@@ -4,7 +4,7 @@
   "description": "Creating server for TO-DO web app as a Assessment test for Rise11 Technologies for Full stackintern position",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

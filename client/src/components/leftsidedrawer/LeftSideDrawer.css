@@ -1,12 +1,13 @@
 /* LeftSideDrawer.css */
 
 .left-side-drawer {
-    width: 200px;
+    width: 300px;
     padding: 1rem;
     background-color: #A683E3;
     color: #fff;
     display: flex;
     flex-direction: column;
+    border-top: 2px solid #E4E9FD;
   }
   
   .create-list-btn {

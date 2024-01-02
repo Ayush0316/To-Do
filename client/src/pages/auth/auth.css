@@ -1,53 +1,51 @@
 /* AuthPage.css */
 
 .auth-page {
-    height: 100vh;
-    background: url('../../assets/background.jpg') center/cover; /* Updated background image path */
-    background-color: #E4E9FD;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
-  
-  label {
-    margin-bottom: 0.5rem;
-  }
-  
-  input {
-    padding: 10px;
-    margin-bottom: 1rem;
-  }
-  
-  button {
-    background-color: #A683E3;
-    color: #fff;
-    padding: 15px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #8743E3;
-  }
-  
-  p {
-    margin-top: 1rem;
-  }
-  
-  /* Other styles from previous examples */
-  
+  height: 100vh;
+  background-color: #E4E9FD;
+  color: #333; /* Darken the text color for better contrast */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+button {
+  background-color: #A683E3;
+  color: #fff;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8743E3;
+}
+
+p {
+  margin-top: 1rem;
+}
+
+/* Other styles from previous examples */
