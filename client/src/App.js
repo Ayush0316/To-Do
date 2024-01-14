@@ -16,9 +16,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/user" element={(isAuthenticated)?<User></User> : <LoginPage setAuth={setAuth} />}></Route>
+      <Route path="/user" element={(isAuthenticated)?<User />: <LoginPage setAuth={setAuth} />}></Route>
       <Route path="/login" element={<LoginPage setAuth={setAuth}/>}></Route>
-      <Route path='/signup' element={<SignupPage setAuth={setAuth}></SignupPage>}></Route>      
+      <Route path='/signup' element={<SignupPage setAuth={setAuth} />}></Route>      
       <Route path="/*" element={<LandingPage/>}></Route>
     </Routes>
   );
